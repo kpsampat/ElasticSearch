@@ -1,0 +1,12 @@
+from elasticsearch import Elasticsearch
+import elasticsearch.helpers
+
+# Connect to the elastic cluster
+es=Elasticsearch()
+
+es_src = Elasticsearch([{"host":"192.168.86.98",'port':8240}])
+es_des = Elasticsearch([{"host":"192.168.86.78",'port':8240}])
+
+elasticsearch.helpers.reindex(client=es_src, source_index="elas_index", target_index="docs", target_client=es_des)
+
+
